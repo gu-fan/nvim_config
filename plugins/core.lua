@@ -20,6 +20,27 @@ return {
       return opts
     end,
   },
+  {
+    "rebelot/heirline.nvim",
+    opts = function(_, opts)
+      opts.winbar = nil
+      return opts
+    end
+  },
+  { -- override nvim-cmp plugin
+    "hrsh7th/nvim-cmp",
+    -- override the options table that is used in the `require("cmp").setup()` call
+    opts = function(_, opts)
+      -- opts parameter is the default options table
+      -- the function is lazy loaded so cmp is able to be required
+      local cmp = require "cmp"
+      -- modify the mapping part of the table
+      opts.mapping["<C-k>"] = cmp.mapping.confirm({select=false})
+
+      -- return the new table to be used
+      return opts
+    end,
+  },
   -- You can disable default plugins as follows:
   -- { "max397574/better-escape.nvim", enabled = false },
   --
