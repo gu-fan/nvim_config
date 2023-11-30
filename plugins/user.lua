@@ -9,4 +9,12 @@ return {
   --     require("lsp_signature").setup()
   --   end,
   -- },
+      {
+            "habamax/vim-godot",
+            lazy=false,
+      },
+      {
+            "uga-rosa/translate.nvim",
+            lazy=false,
+      },
 }
