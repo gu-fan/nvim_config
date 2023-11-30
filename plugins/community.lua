@@ -18,4 +18,5 @@ return {
   { import = "astrocommunity.editing-support.mini-splitjoin" },
   { import = "astrocommunity.motion.flash-nvim" },
   { import = "astrocommunity.pack.godot" },
+  { import = "astrocommunity.git.neogit" },
 }

@@ -54,7 +54,21 @@ return {
 
     -- mappings seen under group name "Buffer"
     ['s'] = false,
+    ['q:'] = ":",
+    ['<leader>W'] = false,
+    ["]b"] = false,
+    ["[b"] = false,
+    ["<S-l>"] = {
+      function() require("astronvim.utils.buffer").nav(vim.v.count > 0 and vim.v.count or 1) end,
+      desc = "Next buffer",
+    },
+    ["<S-h>"] = {
+      function() require("astronvim.utils.buffer").nav(-(vim.v.count > 0 and vim.v.count or 1)) end,
+      desc = "Previous buffer",
+    },
     ['<leader><leader>'] = {'zA'},
+    ["-"] = { "<c-x>", desc = "Descrement number" },
+    ["+"] = { "<c-a>", desc = "Increment number" },
     ['<C-W>1'] = {'<cmd>resize<cr>'},
     ['<C-W>2'] = {'<c-w>='},
     ['<C-W>t'] = {'<c-w>T'},
@@ -129,7 +143,7 @@ return {
 
     ["<leader>cc"] = {
       function() require("Comment.api").toggle.linewise.count(vim.v.count > 0 and vim.v.count or 1) end,
-      desc = "Toggle comment lie",
+      desc = "Toggle comment line",
     },
 
     -- quick save
@@ -139,8 +153,8 @@ return {
     ["<leader>cc"] = {
       "<esc><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<cr>",
     },
-    ['<C-C>'] = {'y'},
-    ['<C-V>'] = {'c<C-R>+<Esc>'},
+    ['<C-c>'] = {'y'},
+    ['<C-v>'] = {'"0c<C-R>+<Esc>'},
     ['#'] = {'*'},
     ['<leader>tt'] = {':Translate ZH<CR>'},
   },
