@@ -56,6 +56,7 @@ return {
     ['s'] = false,
     ['q:'] = ":",
     ['<leader>W'] = false,
+    ['<leader>C'] = false,
     ["]b"] = false,
     ["[b"] = false,
     ["<S-l>"] = {
@@ -72,6 +73,24 @@ return {
     ['<C-W>1'] = {'<cmd>resize<cr>'},
     ['<C-W>2'] = {'<c-w>='},
     ['<C-W>t'] = {'<c-w>T'},
+    ['<C-W><C-q>'] = {
+        function()
+          if vim.fn.winnr('$') ~= 1  then
+            vim.cmd('quit')
+          else
+            vim.cmd('echo "is last window"')
+          end
+        end
+    },
+    ['<C-W>q'] = {
+        function()
+          if vim.fn.winnr('$') ~= 1  then
+            vim.cmd('quit')
+          else
+            vim.cmd('echo "is last window"')
+          end
+        end
+    },
     ['<C-Z>'] = {'uzv'},
     ['#'] = {'/<C-R><C-W><CR>'},
     ['<C-Y>'] = {'<C-R>zv'},
@@ -112,7 +131,12 @@ return {
     },
     ["<c-e>ww"] = { "<cmd>edit /home/ryk/_0wikis/wiki_new/index.rst<cr>"},
     ["<leader>b"] = { name = "Buffers" },
-    ["<leader>cd"] = {"<cmd>cd %:p:h<cr>"},
+    ["<leader>cd"] = {
+      function()
+        vim.cmd('cd %:h')
+        vim.cmd('cd `git rev-parse --show-toplevel`')
+      end
+    },
     ["<leader>cg"] = {"<cmd>cd %:h | cd `git rev-parse --show-toplevel`<CR><cmd>pwd<CR>"},
     ["<leader>c"] = false,
     ["<leader>vv"] = {"<cmd>edit /home/ryk/.config/nvim/lua/user/mappings.lua<cr>"},
@@ -127,6 +151,7 @@ return {
     ["<leader>rt"] = { 
       "<cmd>edit /home/ryk/godot/SLG_P2/temp/test.gd<cr>"
     },
+    ["<leader>zz"] = {":ZenMode<cr>"},
     ["<leader>e"] = {
       function()
         vim.cmd('cd %:h')
