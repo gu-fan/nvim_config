@@ -102,11 +102,14 @@ local function float_dict(wd)
       dic = {'no result'}
     end
     vim.api.nvim_buf_set_lines(buf, 0, -1, true, dic)
-    local opts = {relative= 'cursor', width=80, height=table.getn(dic), col= 1,
+    local opts = {relative= 'cursor', width=50, height=table.getn(dic), col= 1,
         row= 1, anchor= 'NW', border="single"}
     local win = vim.api.nvim_open_win(buf, 0, opts)
     -- vim.o.foldcolumn = 0
     vim.api.nvim_win_set_option(win, 'foldcolumn', '0')
+    vim.cmd("noremap <buffer><nowait> q :q<cr>")
+    vim.cmd("noremap <buffer> <c-c> :q<cr>")
+    vim.cmd("noremap <buffer> <esc> :q<cr>")
 end
 
 local function float_dict_n()
@@ -168,11 +171,11 @@ return {
     ["Q"] = "<nop>",
     ["q"] = "<nop>",
     ["gq"] = "q",
-    ['q:'] = ":",
+    ['q:'] = {":", nowait=true},
     ['H'] = "h",
     ['J'] = "j",
-    ['K'] = "k",
     ['L'] = "l",
+    ['K'] = "k",
     ['j'] = "gj",
     ['k'] = "gk",
     ['gK'] = "K",

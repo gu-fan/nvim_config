@@ -1,4 +1,42 @@
 local utils = require "astronvim.utils"
+local PrintNotifier = {}
+
+PrintNotifier.new = function(timer, opts)
+  local self = setmetatable({}, { __index = PrintNotifier })
+  self.timer = timer
+  self.hidden = false
+  self.opts = opts -- not used
+  if self.timer.name then
+    self.name = self.timer.name
+  else
+    self.name = ''
+  end
+  return self
+end
+
+PrintNotifier.start = function(self)
+  print(string.format("Starting timer #%d %s: for %ds", self.timer.id, self.name, self.timer.time_limit))
+end
+
+PrintNotifier.tick = function(self, time_left)
+  if not self.hidden then
+    print(string.format("Timer #%d %s: %ds", self.timer.id, self.name, time_left))
+  end
+end
+
+PrintNotifier.done = function(self)
+  print(string.format("Timer #%d %s: complete", self.timer.id, self.name))
+end
+
+PrintNotifier.stop = function(self) end
+
+PrintNotifier.show = function(self)
+  self.hidden = false
+end
+
+PrintNotifier.hide = function(self)
+  self.hidden = true
+end
 
 return {
   --  You can also add new plugins here as well:
@@ -36,7 +74,8 @@ return {
           opts = {
             sticky = false,
           }
-        }
+        },
+        { init = PrintNotifier.new, opts = {} },
       }
     },
   },
