@@ -18,7 +18,7 @@ return {
   },
 
   -- Set colorscheme to use
-  colorscheme = "nordic",
+  colorscheme = "kanagawa",
 
   -- Diagnostics configuration (for vim.diagnostics.config({...})) when diagnostics are on
   diagnostics = {
@@ -107,19 +107,19 @@ return {
 
       vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
       vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
-      vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
-      vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
-      vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
-      vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, bufopts)
-      vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
-      vim.keymap.set('n', '<space>wl', function()
-        print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-      end, bufopts)
-      vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, bufopts)
-      vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
-      vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
-      vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
-      vim.keymap.set('n', '<space>f', function() vim.lsp.buf.format { async = true } end, bufopts)
+      vim.keymap.set('n', 'gK', vim.lsp.buf.hover, bufopts)
+      -- vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
+      vim.keymap.set('n', 'gH', vim.lsp.buf.signature_help, bufopts)
+      -- vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, bufopts)
+      -- vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
+      -- vim.keymap.set('n', '<space>wl', function()
+      --   print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+      -- end, bufopts)
+      -- vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, bufopts)
+      -- vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
+      -- vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
+      -- vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
+      -- vim.keymap.set('n', '<space>f', function() vim.lsp.buf.format { async = true } end, bufopts)
     client.notify = function (method, params)
         if method == 'textDocument/didClose' then
           -- Godot doesn't implement didClose yet
@@ -139,13 +139,8 @@ return {
       flags = lsp_flags,
       filetypes = { "gd", "gdscript", "gdscript3" },
     }
-
-    vim.api.nvim_create_autocmd({"BufRead", "BufNewFile"}, {
-      pattern = {"*.gd"},
-      callback = function(ev)
-          vim.cmd('setl shiftwidth=4 expandtab tabstop=4 softtabstop=4')
-      end
-    })
-
+    vim.cmd("cab E e")
+    vim.cmd("cab W w")
+    -- vim.cmd("cab Edit edit")
   end,
 }

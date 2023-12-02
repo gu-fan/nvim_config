@@ -23,6 +23,7 @@ return {
   {
     "rebelot/heirline.nvim",
     opts = function(_, opts)
+      local status = require("astronvim.utils.status")
       opts.winbar = nil
       return opts
     end
